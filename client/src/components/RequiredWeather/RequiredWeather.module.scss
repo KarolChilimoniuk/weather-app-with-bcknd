@@ -1,0 +1,49 @@
+.forecastContainer {
+   align-items: center;
+   border-radius: 10px;
+   display: flex;
+   flex-direction: column;
+   flex-grow: 1;
+   flex-wrap: wrap;
+   width: 100%;
+
+   .error {
+      font-size: 1.5em;
+      text-align: center;
+      width: 100%;
+   }
+
+   .currentWeatherContainer {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+      width: 90%;
+
+      .todayWeather {
+         background-color: rgba(83,89,147, 0.9);
+         border-radius: 10px;
+         padding: 40px;
+         width: 70%;
+         
+         .paragraph {
+           width: 70%;
+
+            .span {
+               color: rgb(255,255,255);
+               font-weight: 600;
+            }
+         }
+      }
+
+      @media(min-width: 1024px) {
+         width: 40%;
+      }
+   }
+
+   @media(min-width: 1024px) {
+     align-items: start;
+     flex-direction: row;
+     flex-wrap: wrap;
+   }
+}
