@@ -14,6 +14,7 @@ const Home = ({userPosition}) => {
       const localWeatherData = await getLocWeatherData(userPosition.coords.latitude, userPosition.coords.longitude);
       newUserPositionWeather(localWeatherData.currentWeather);
       newForecastInfo(localWeatherData.forecastData);
+      console.log(localWeatherData);
     }
   }, []);
     

@@ -6,8 +6,11 @@ import dotenv from 'dotenv';
 dotenv.config({ path: './.env' });
 
 const app = express();
-const port = process.env.REACT_APP_PORT;
+const port = process.env.PORT || 4000;
 
+app.get('/', (req, res) =>{
+    res.send('Welcome!');
+})
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

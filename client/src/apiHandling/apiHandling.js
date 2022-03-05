@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = `http://localhost:4000/weather/`; 
+const url = `https://gentle-cliffs-74646.herokuapp.com/weather/`; 
 
 // User location weather & forecast data
 
@@ -9,6 +9,7 @@ export const getLocWeatherData = async(lat, lon) => {
     await axios.post(url, { lat: lat, lon: lon })
     .then(res => {
         weatherData = res.data;
+        console.log(weatherData);
     })
     .catch(err => console.log(err.message));
     return weatherData;

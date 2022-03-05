@@ -17,9 +17,9 @@ const RequiredWeather = () => {
       }
     }
 
-    useEffect(async ()=> {
+    useEffect(()=> {
       if(cityName !== '') {
-        await fetchAppData();
+        fetchAppData();
       }
   }, [cityName]);
   

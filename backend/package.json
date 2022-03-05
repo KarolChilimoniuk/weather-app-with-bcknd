@@ -4,7 +4,8 @@
   "description": "weather app backend",
   "main": "index.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.mjs"
   },
   "author": "Karol Chilimoniuk",
   "license": "ISC",
