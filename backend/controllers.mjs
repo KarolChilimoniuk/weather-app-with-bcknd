@@ -10,8 +10,12 @@ export const getLocWeatherData = async (req, res) => {
 export const getRequiredWeatherData = async (req, res) => {
    const {cityName} = req.body;
    const currentWeather = await getReqWeather(cityName);
-   const weatherForecast = await getReqForecast(currentWeather.coord.lat, currentWeather.coord.lon);
-   res.status(200).send({currentWeather: currentWeather, forecastData: weatherForecast});
+   if(currentWeather) {
+      const weatherForecast = await getReqForecast(currentWeather.coord.lat, currentWeather.coord.lon);
+      res.status(200).send({currentWeather: currentWeather, forecastData: weatherForecast});
+   } else {
+      res.status(400).send({message: "Wrong city name. Try again."});
+   }
 }
 
 

@@ -9,7 +9,6 @@ export const getLocWeatherData = async(lat, lon) => {
     await axios.post(url, { lat: lat, lon: lon })
     .then(res => {
         weatherData = res.data;
-        console.log(weatherData);
     })
     .catch(err => console.log(err.message));
     return weatherData;
@@ -22,9 +21,10 @@ export const getReqCityData = async(cityName) => {
     await axios.post(`${url}reqWeather`, { cityName: cityName })
     .then(res => {
         weatherData = res.data;
-        console.log(res.data);
     })
-    .catch(err => console.log(err.message));
+    .catch(err => {
+        weatherData = {message: 'Wrong city name'};
+    });
     return weatherData;
 }
 

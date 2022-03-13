@@ -12,8 +12,12 @@ const RequiredWeather = () => {
     const fetchAppData = async () => {
       if(cityName !== '') {
         const weatherData = await getReqCityData(cityName);
-        newCityInfo(weatherData.currentWeather);
-        newForecastInfo(weatherData.forecastData);
+          if(!weatherData.message) {
+            newCityInfo(weatherData.currentWeather);
+            newForecastInfo(weatherData.forecastData);
+          } else {
+            alert(`${weatherData.message}`);
+          }
       }
     }
 
@@ -25,7 +29,7 @@ const RequiredWeather = () => {
   
   return(
     <div className={styles.forecastContainer}>
-      <Form appMethod={newCityName} cotyName={cityName}/>
+      <Form appMethod={newCityName} cityName={cityName}/>
         {cityInfo === "" && <p className={styles.error}>Write a city</p>}
         {cityInfo.cod !== 200 ? <p className={styles.error}>{cityInfo.message}</p> : null}
         {cityInfo.cod === 200 ? 

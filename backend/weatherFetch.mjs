@@ -30,8 +30,12 @@ export const getReqWeather = async(cityName) => {
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${process.env.APIWEATHER_KEY}`;
     try{
         const currWeather = await fetch(url);
-        const weatherJSON = await currWeather.json();
-        return weatherJSON;
+        if(currWeather.ok) {
+            const weatherJSON = await currWeather.json();
+            return weatherJSON;
+        } else {
+            throw new Error ('Bad city name');
+        }
     } catch(err) {
         console.log(err.message);
     }
