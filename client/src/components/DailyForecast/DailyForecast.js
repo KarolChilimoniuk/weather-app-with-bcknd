@@ -29,7 +29,7 @@ const DailyForecast = ({forecastInfo}) => {
     }, [forecastInfo]);
 
     return (
-        <div className={styles.dailyForecastContainer}>
+        <section className={styles.dailyForecastContainer}>
             <h2 className={styles.header}>8 days forecast</h2>
             <div className={styles.weekDailyForecast}>
            {forecastInfo !== undefined && forecastInfo !== null ? forecastInfo.daily.map((el,i,arr) => 
@@ -42,7 +42,7 @@ const DailyForecast = ({forecastInfo}) => {
                 </div>
             ) : null} 
             </div>
-        </div>
+        </section>
     )
 }
 

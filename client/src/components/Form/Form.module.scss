@@ -1,3 +1,5 @@
+@import '../../App.scss';
+
 .form {
   align-items: center;
   display: flex;
@@ -18,7 +20,7 @@
     }
 
     .formInput {
-      background-color: rgba(0,0,0,0.7);
+      background-color: $third-color;
       border: none;
       border-radius: 10px;
       color: #fff;
