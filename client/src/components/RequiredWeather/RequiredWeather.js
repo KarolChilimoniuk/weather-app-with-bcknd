@@ -30,14 +30,6 @@ const RequiredWeather = () => {
   
   return(
     <>
-      <Helmet>
-        <title>Weather app by Karol Chilimoniuk</title>
-        <meta
-          name='description'
-          content='Weather app coded by Karol Chilimoniuk with React and other technologies'
-        />
-        <link rel='canonical' href='/requiredForecast' />
-      </Helmet>
       <section className={styles.forecastContainer}>
       <Form appMethod={newCityName} cityName={cityName}/>
         {cityInfo === "" && <p className={styles.error}>Write a city</p>}
@@ -48,6 +40,7 @@ const RequiredWeather = () => {
             <h2 className={styles.header}>Current weather</h2>
             <div className={styles.todayWeather}>
               <h3 className={styles.paragraph}>{cityInfo.name}</h3>
+              <img className={styles.icon} src={`http://openweathermap.org/img/wn/${cityInfo.weather[0].icon}@2x.png`} alt="weather icon"/>
               <p className={styles.paragraph}>Weather: <span className={styles.span}>{cityInfo.weather[0].main}</span></p>
               <p className={styles.paragraph}>Temperature: <span className={styles.span}>{cityInfo.main.temp} °C</span></p>
               <p className={styles.paragraph}>Feels like: <span className={styles.span}>{cityInfo.main.feels_like} °C</span></p>

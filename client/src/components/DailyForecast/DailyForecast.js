@@ -35,7 +35,10 @@ const DailyForecast = ({forecastInfo}) => {
            {forecastInfo !== undefined && forecastInfo !== null ? forecastInfo.daily.map((el,i,arr) => 
                <div className={styles.dayForecast}>
                     <h3 className={styles.secondHeader}>{forecastDays[i]}</h3>
+                    <img className={styles.icon} src={`http://openweathermap.org/img/wn/${el.weather[0].icon}@2x.png`} alt="weather icon"/>
+                    <p className={styles.paragraph}>Weather: <span className={styles.span}>{el.weather[0].description}</span></p>
                     <p className={styles.paragraph}>Temperature: <span className={styles.span}>{el.temp.day} °C</span></p>
+                    <p className={styles.paragraph}>Feels like: <span className={styles.span}>{el.feels_like.day} °C</span></p>
                     <p className={styles.paragraph}>Pressure: <span className={styles.span}>{el.pressure} hPa </span></p>
                     <p className={styles.paragraph}>Humidity: <span className={styles.span}>{el.humidity} % </span></p>
                     <p className={styles.paragraph}>Wind speed: <span className={styles.span}>{el.wind_speed} km/h</span></p>

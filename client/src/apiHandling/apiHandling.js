@@ -9,8 +9,10 @@ export const getLocWeatherData = async(lat, lon) => {
     await axios.post(url, { lat: lat, lon: lon })
     .then(res => {
         weatherData = res.data;
+        console.log('działa');
     })
     .catch(err => console.log(err.message));
+    console.log('jest ok');
     return weatherData;
 }
 
