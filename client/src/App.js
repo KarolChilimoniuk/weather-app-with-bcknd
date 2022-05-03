@@ -1,4 +1,4 @@
-import React, {useState, useEffect, createContext} from "react";
+import React, {useState, useEffect} from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,41 +9,33 @@ import RequiredWeather from './components/RequiredWeather/RequiredWeather.js';
 import Nav from './components/Nav/Nav.js';
 import Footer from './components/Footer/Footer.js';
 import './App.scss';
-export const UserLocContext = createContext(0);
 export const DayContext = React.createContext(null);
 export const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 export const wind = window;
 
 const App = () => {
-  const [userPositionData, newUserPosition] = useState(0);
-  const [dayNumber, setDayNumber] = useState('');
+  const [userPosition, newUserPosition] = useState(0);
+  const [dayNumber, setDayNumber] = useState(0);
   const successCallback = userPos => {newUserPosition(userPos); console.log("I've got your localization data :]")};
   const failureCallback = () => {newUserPosition(0); console.log("I can't get your localization data :(");}
-  
   useEffect(() => {
     window.navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
-    return () => {
-      window.navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
-      const today = new Date().getDay();
-      setDayNumber(today);
-      console.log(userPositionData);
-    }
-  }, []);
+    const today = new Date().getDay();
+    setDayNumber(today);
+  }, [dayNumber]);
   
   return (
     <Router>
-      <UserLocContext.Provider value={userPositionData}>
       <DayContext.Provider value={dayNumber}>
         <div className="App">
           <Nav/>
           <Switch>
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/" component={() => <Home userPosition={userPosition}/>}/>
             <Route path = "/requiredForecast" component={RequiredWeather}/>
           </Switch>
           <Footer/>
         </div>
       </DayContext.Provider>
-      </UserLocContext.Provider>
     </Router>
   );
 }

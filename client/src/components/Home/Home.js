@@ -1,45 +1,45 @@
 import React, {useEffect, useState, useContext} from 'react';
-import {UserLocContext} from '../../App.js';
+import PropTypes from 'prop-types';
 import DailyForecast from '../DailyForecast/DailyForecast.js';
 import {getLocWeatherData} from '../../apiHandling/apiHandling.js';
+import {Helmet} from 'react-helmet-async';
 import styles from './Home.module.scss';
 
-const Home = () => {
+const Home = ({userPosition}) => {
 
   const [userPositionWeather, newUserPositionWeather] = useState('');
   const [forecastInfo, newForecastInfo] = useState('');
-  const [isLoading, setLoading] = useState(false);
-
-  const userPosition = useContext(UserLocContext);
-
-  const handleData = async() => {
-    const localWeatherData = await getLocWeatherData(userPosition.coords.latitude, userPosition.coords.longitude);
-    setLoading(true);
-    newUserPositionWeather(localWeatherData.currentWeather);
-    newForecastInfo(localWeatherData.forecastData);
-    setLoading(false);
-  }
-  
-  useEffect(() => {
+  const [isLoading, setLoading] = useState(true);
+    
+  useEffect(async () => {
     if(userPosition !== 0) {
-      handleData();
+      const localWeatherData = await getLocWeatherData(userPosition.coords.latitude, userPosition.coords.longitude);
+      newUserPositionWeather(localWeatherData.currentWeather);
+      newForecastInfo(localWeatherData.forecastData);
+      setLoading(false);
     }
-  }, [userPosition]);
+  }, []);
     
   return( 
     <>
+      <Helmet>
+        <title>Weather app by Karol Chilimoniuk</title>
+        <meta
+          name='description'
+          content='Weather app coded by Karol Chilimoniuk with React and other technologies'
+        />
+        <link rel='canonical' href='/' />
+      </Helmet>
       <section className={styles.container}>
-        {isLoading && <h2 className={styles.header}>...Loading</h2>}
-        {userPositionWeather.cod === 200 && 
+        {isLoading && <h3 className={styles.loading}>... Loading</h3>}
+        {(userPositionWeather.cod === 200 && isLoading === false) && 
         <>
           <div className={styles.currentWeather}>
             <h2 className={styles.header}>Your localization</h2>
             <div className={styles.weatherDetails}>
               <p className={styles.paragraph}>You are in <span className={styles.span}>{userPositionWeather.name}</span>, <span className={styles.span}>{userPositionWeather.sys.country}</span></p>
-              <img className={styles.icon} src={`http://openweathermap.org/img/wn/${userPositionWeather.weather[0].icon}@2x.png`} alt="weather icon"/>
-              <div>
-                <p className={styles.paragraph}>Current weather is: <span className={styles.span}>{userPositionWeather.weather[0].main}</span></p>
-              </div>
+              <img className={styles.icon} src={`http://openweathermap.org/img/wn/${userPositionWeather.weather[0].icon}@2x.png`}/>
+              <p className={styles.paragraph}>Current weather is: <span className={styles.span}>{userPositionWeather.weather[0].description}</span></p>
               <p className={styles.paragraph}>Temperature: <span className={styles.span}>  {userPositionWeather.main.temp} °C</span></p>
               <p className={styles.paragraph}>Feels like: <span className={styles.span}>  {userPositionWeather.main.feels_like} °C</span></p>
               <p className={styles.paragraph}>Pressure: <span className={styles.span}>  {userPositionWeather.main.pressure} hPa</span></p>
@@ -49,12 +49,16 @@ const Home = () => {
           </div>
           {
           forecastInfo !== '' && <DailyForecast forecastInfo={forecastInfo}/>
-          }
+          } 
         </>
         }
       </section>
     </>
   )
+}
+
+Home.propTypes = {
+  userPosition: PropTypes.string,
 }
 
 export default Home;

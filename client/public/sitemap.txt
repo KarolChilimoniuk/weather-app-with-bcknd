@@ -1,0 +1,2 @@
+https://forecast-weather-app-by-charlie.netlify.app/
+https://forecast-weather-app-by-charlie.netlify.app/requiredForecast

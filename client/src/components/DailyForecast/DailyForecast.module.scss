@@ -38,6 +38,10 @@
                 margin-bottom: 0;
             }
 
+            .icon {
+                width: 80px;
+             }
+
              @media(min-width: 1024px) {
                 align-items: flex-start;
                 box-sizing: border-box;
@@ -48,10 +52,6 @@
                 margin-right: 5px;
                 margin-top: 20px;
                 width: 232px;
-            }
-
-            .icon {
-                width: 100px;
             }
         }
     
