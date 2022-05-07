@@ -5,6 +5,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+    min-width: 311px;
     width: 90%;
 
     .header {
@@ -51,7 +52,7 @@
                 margin-left: 5px;
                 margin-right: 5px;
                 margin-top: 20px;
-                width: 232px;
+                width: 260px;
             }
         }
     
@@ -60,6 +61,7 @@
             .span {
                color: rgb(255,255,255);
                font-weight: 600;
+               text-transform: capitalize,
             }
 
             @media(min-width: 1024px) {

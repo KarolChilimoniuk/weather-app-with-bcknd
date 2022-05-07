@@ -17,6 +17,7 @@
       align-items: center;
       display: flex;
       flex-direction: column;
+      min-width: 320px;
       width: 90%;
 
       .icon {
@@ -45,12 +46,13 @@
             .span {
                color: rgb(255,255,255);
                font-weight: 600;
+               text-transform: capitalize;
             }
         }
 
         @media(min-width: 1024px) {
             min-width: 246px;
-            width: 40%;
+            width: 45%;
          }
       }
 
