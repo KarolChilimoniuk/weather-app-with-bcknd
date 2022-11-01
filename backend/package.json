@@ -5,14 +5,16 @@
   "main": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.mjs"
+    "start": "node index.mjs"
   },
   "author": "Karol Chilimoniuk",
   "license": "ISC",
   "dependencies": {
+    "@types/express": "^4.17.13",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "node-fetch": "^3.2.1"
-  }
+  },
+  "devDependencies": {}
 }
